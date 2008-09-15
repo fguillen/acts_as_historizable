@@ -1,0 +1,65 @@
+== acts_as_historizable
+It tries to be a very simple plugin to add support to save all the modificaciones over an ActiveRecord model.
+
+I have upload a complete rails application just for try the plugin on a real environment.
+
+The real plugin is on: /vendor/plugins/acts_as_historizable
+
+== Try the example application
+
+1) Download all directories tree.
+2) cd to your download path
+3) $ rake db:migrate
+4) $ mongrel_rails start
+5) go to http://localhost:3000
+
+== Install the plugin on your proyect
+
+Copy the /vendor/plugins/acts_as_historizable dir on YOUR_PROJECT_PATH/vendor/plugins
+
+==== Charge the migrations
+class CreateHistories < ActiveRecord::Migration
+  def self.up
+    create_table :histories, :force => true do |t|
+      t.integer   :historizable_id,        :null => false
+      t.string    :historizable_type,      :null => false
+      t.datetime  :created_at,             :null => false
+    end
+  end
+
+  def self.down
+    drop_table :histories
+  end
+end
+
+class CreateHistoryLines < ActiveRecord::Migration
+  def self.up
+    create_table :history_lines, :force => true do |t|
+      t.integer   :history_id,          :null => false
+      t.string    :field_name,          :null => false
+      t.string    :field_value_was,     :null => false
+      t.string    :field_value_actual,  :null => false
+    end
+  end
+
+  def self.down
+    drop_table :history_lines
+  end
+end
+
+==== Convert an ActiveRecord on historizable
+
+Just insert this line on the ActiveRecord declaration:
+
+acts_as_historizable
+
+==== Example of use
+
+mi_model_instance.histories.each do |h|
+  p "modification on: #{h.created_at}"
+  p "--------------------------------"
+  h.history_lines.each do |hl|
+    p hl.to_s
+  end
+end
+
