@@ -1,0 +1,9 @@
+<h1>Editing task</h1>
+
+<% form_for(@task) do |f| %>
+  <%= render :partial => 'form', :locals => { :f => f } %>
+  <%= f.submit "Update" %>
+<% end %>
+
+<%= link_to 'Show', @task %> |
+<%= link_to 'Back', tasks_path %>

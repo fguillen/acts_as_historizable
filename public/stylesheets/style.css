@@ -1,0 +1,66 @@
+div{
+padding: 5px;
+}
+
+#wrap{
+width: 600px;
+margin: 0px auto;
+}
+
+.task{
+border: 1px solid black;
+
+margin-bottom: 10px;
+}
+
+.task > .title{
+background-color: black;
+color: white;
+}
+
+.task > .description{
+}
+
+.controls {
+}
+
+.controls ul{
+text-align: right;
+}
+
+.controls li{
+display: inline;
+}
+
+.histories_title{
+background-color: grey;
+color: white;
+}
+
+.histories_title a{
+color: white;
+}
+
+.history_date{
+background-color: #ddd;
+color: #666;
+}
+
+.history_lines{
+border-bottom: 1px solid grey;
+margin-bottom: 5px;
+}
+
+.history_line_field_name{
+font-weight: bold;
+width: 120px;
+}
+
+
+.history_line_field_value_was{
+width: 180px;
+}
+
+.history_lines td{
+vertical-align: top;
+}
